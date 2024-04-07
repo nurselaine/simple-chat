@@ -1,23 +1,27 @@
+import { auth } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 import React, { useState } from "react";
 import GoogleSignin from "../img/btn_google_signin_dark_pressed_web.png";
 
 const NavBar = () => {
-  const [user, setUser] = useState(false);
+  const [user] = useAuthState(auth);
 
   const googleSignIn = () => {
-    setUser(true);
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
   };
 
   const signOut = () => {
-    setUser(false);
+    auth.signOut();
   };
 
   return (
     <nav className="nav-bar">
-      <h1>React Chat</h1>
+      <h1>Simple Chat App</h1>
       {user ? (
         <button onClick={signOut} className="sign-out" type="button">
-          Sign Out Hello????
+          Sign Out
         </button>
       ) : (
         <button className="sign-in">
