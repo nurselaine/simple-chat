@@ -121,6 +121,14 @@ input {
   background-color: #4c768d;
   display: flex;
 }
+
+.form-input__input {
+  height: auto;
+  width: 100%;
+  border-radius: 5px 0 0 5px;
+  font-size: 1.5rem;
+}
+
 .send-message > input {
   height: 40px;
   padding: 10px 10px;

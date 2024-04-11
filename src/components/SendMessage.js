@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { auth, db } from "../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import '../App.css';
 
-const SendMessage = () => {
+const SendMessage = ({ scroll }) => {
   const [message, setMessage] = useState("");
 
   const sendMessage = async (e) => {
@@ -21,6 +22,7 @@ const SendMessage = () => {
       uid,
     })
     setMessage("");
+    scroll.current.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
@@ -28,7 +30,8 @@ const SendMessage = () => {
       <label htmlFor="messageInput" hidden>
         Enter Message
       </label>
-      <input
+      <textarea
+        rows="1"
         id="messageInput"
         name="messageInput"
         type="text"
